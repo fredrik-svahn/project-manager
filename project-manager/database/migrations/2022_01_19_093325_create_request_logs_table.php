@@ -13,11 +13,14 @@ class CreateRequestLogsTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable("request_logs")) return;
+
         Schema::create('request_logs', function (Blueprint $table) {
             $table->id();
             $table->string("path");
             $table->string("method")->default("POST");
             $table->string("body");
+            $table->boolean("done")->default(true);
             $table->bigInteger("user_id");
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateRequestLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request_logs');
+        \App\Models\RequestLog::query()->update(["done" => false]);
     }
 }
