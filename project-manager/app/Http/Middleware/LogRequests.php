@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\RequestLog;
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -21,15 +22,18 @@ class LogRequests
         return $next($request);
     }
 
-    public function terminate(Request $request, Response $response)
+    public function terminate(Request $request, JsonResponse $response)
     {
         if ($response->isClientError() || $response->isServerError()) return;
+        if ($response->isInvalid()) return;
         if ($request->method() == "GET") return;
+        if ($request->query("_replay")) return;
 
         RequestLog::create([
                                'path'   => $request->path(),
                                'body'   => $request->all(),
-                               'method' => $request->method()
+                               'method' => $request->method(),
+                               'user_id' => $request->user() ? $request->user()->id : 0
                            ]);
     }
 }

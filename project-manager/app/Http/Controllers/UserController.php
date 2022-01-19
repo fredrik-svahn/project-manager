@@ -8,7 +8,19 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
-    public function index() {
+    public function index()
+    {
         return User::all();
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+                               "name"     => "string|required",
+                               "email"    => "email|required|unique:users",
+                               "password" => "string|required"
+                           ]);
+
+        return User::create($request->all());
     }
 }

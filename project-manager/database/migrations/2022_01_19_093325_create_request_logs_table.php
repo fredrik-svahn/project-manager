@@ -21,7 +21,7 @@ class CreateRequestLogsTable extends Migration
             $table->string("method")->default("POST");
             $table->string("body");
             $table->boolean("done")->default(true);
-            $table->bigInteger("user_id");
+            $table->bigInteger("user_id")->default(0);
             $table->timestamps();
         });
     }

@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')
-     ->get('/user',
-         function (Request $request) {
-             return $request->user();
-         });
-
 Route::middleware(LogRequests::class)
      ->group(function () {
          Route::apiResource("/user", \App\Http\Controllers\UserController::class);
