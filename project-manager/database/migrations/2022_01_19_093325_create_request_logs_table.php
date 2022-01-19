@@ -15,6 +15,10 @@ class CreateRequestLogsTable extends Migration
     {
         Schema::create('request_logs', function (Blueprint $table) {
             $table->id();
+            $table->string("path");
+            $table->string("method")->default("POST");
+            $table->string("body");
+            $table->bigInteger("user_id");
             $table->timestamps();
         });
     }
