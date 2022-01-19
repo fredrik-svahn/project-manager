@@ -22,7 +22,7 @@ class LogRequests
         return $next($request);
     }
 
-    public function terminate(Request $request, JsonResponse $response)
+    public function terminate(Request $request, $response)
     {
         if ($response->isClientError() || $response->isServerError()) return;
         if ($response->isInvalid()) return;
@@ -30,10 +30,11 @@ class LogRequests
         if ($request->query("_replay")) return;
 
         RequestLog::create([
-                               'path'   => $request->path(),
-                               'body'   => $request->all(),
-                               'method' => $request->method(),
-                               'user_id' => $request->user() ? $request->user()->id : 0
+                               'path'    => $request->path(),
+                               'body'    => $request->all(),
+                               'method'  => $request->method(),
+                               'user_id' => $request->user() ? $request->user()->id : 0,
+                               'ip'      => $request->ip()
                            ]);
     }
 }
