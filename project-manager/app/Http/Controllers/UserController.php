@@ -22,7 +22,6 @@ class UserController extends Controller
                                "password" => "string|required"
                            ]);
 
-        $data->password = Hash::make($request->password);
         return User::create($data);
     }
 }

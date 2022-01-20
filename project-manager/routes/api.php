@@ -19,3 +19,8 @@ Route::middleware(LogRequests::class)
      ->group(function () {
          Route::apiResource("/user", \App\Http\Controllers\UserController::class);
      });
+
+
+Route::post("/hash", function(Request $request) {
+   return \Illuminate\Support\Facades\Hash::make($request->value);
+});
