@@ -15,12 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(LogRequests::class)
+Route::middleware([LogRequests::class, 'auth:sanctum'])
      ->group(function () {
          Route::apiResource("/user", \App\Http\Controllers\UserController::class);
      });
-
-
-Route::post("/hash", function(Request $request) {
-   return \Illuminate\Support\Facades\Hash::make($request->value);
-});

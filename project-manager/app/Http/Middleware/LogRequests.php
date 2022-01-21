@@ -31,7 +31,7 @@ class LogRequests
 
         RequestLog::create([
                                'path'    => $request->path(),
-                               'body'    => $request->all(),
+                               'body'    => $request->except("password", "password_confirmation"),
                                'method'  => $request->method(),
                                'user_id' => $request->user() ? $request->user()->id : 0,
                                'ip'      => $request->ip()
