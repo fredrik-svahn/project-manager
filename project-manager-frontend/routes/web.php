@@ -18,5 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get("/login", [\App\Http\Controllers\UserController::class, 'login']);
+Route::post( '/login', [\App\Http\Controllers\UserController::class, 'login_post']);
 Route::get('/register', [\App\Http\Controllers\UserController::class, 'register']);
 Route::post('/register', [\App\Http\Controllers\UserController::class, 'register_post']);

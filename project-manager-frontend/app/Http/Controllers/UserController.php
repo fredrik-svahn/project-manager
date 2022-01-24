@@ -12,6 +12,11 @@ class UserController extends Controller
         return view('login');
     }
 
+    public function login_post()
+    {
+        
+    }
+
     public function register()
     {
         return view('register');
@@ -20,16 +25,29 @@ class UserController extends Controller
     public function register_post(Request $request)
     {
         $api      = new API();
+        $path     = "/api/user";
+        $data     = $request->all();
+
         $response =
             $api
-                ->url("/api/user")
-                ->body($request->all())
+                ->url($path)
+                ->body($data)
                 ->post()
                 ->response();
 
-        $redirect = redirect("/");
+        return $this->redirectWithErrors("/", $response);
+    }
 
-        if(isset($response['errors'])) {
+    /**
+     * @param string $redirectTo
+     * @param $response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function redirectWithErrors(string $redirectTo, $response)
+    {
+        $redirect = redirect($redirectTo);
+
+        if (isset($response['errors'])) {
             $redirect = redirect()->back();
             $redirect->withErrors($response['errors']);
         }
