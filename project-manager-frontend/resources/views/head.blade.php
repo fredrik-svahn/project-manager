@@ -12,6 +12,15 @@
 </head>
 <body>
     <div class="col-md-12">
+        @if($errors->any())
+        <div class="alert-danger">
+            Errors:
+            @foreach($errors->all() as $error)
+                {{  $error }}
+            @endforeach
+        </div>
+        @endif
+
         @yield('body')
     </div>
 

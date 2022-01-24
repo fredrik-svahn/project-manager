@@ -22,11 +22,18 @@ class UserController extends Controller
         $api      = new API();
         $response =
             $api
-                ->url("/api/register")
+                ->url("/api/user")
                 ->body($request->all())
                 ->post()
                 ->response();
-        dd($response);
-        return false;
+
+        $redirect = redirect("/");
+
+        if(isset($response['errors'])) {
+            $redirect = redirect()->back();
+            $redirect->withErrors($response['errors']);
+        }
+
+        return $redirect;
     }
 }

@@ -18,7 +18,7 @@ class API
     public function __construct()
     {
         $this->api_url = env("API_URL");
-        $this->token   = session(['api_token']);
+        $this->token   = session('api_token');
     }
 
     public function post()
@@ -57,8 +57,22 @@ class API
         return $this;
     }
 
+    /**
+     * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+     * @throws \Exception
+     */
     public function response()
     {
-        return Http::withToken($this->token)->send($this->method, $this->api_url . $this->request_url, $this->body);
+        return Http::withToken($this->token)
+                   ->acceptJson()
+                   ->send(
+                       $this->method,
+                       $this->api_url . $this->request_url,
+                       [
+                           'json' => $this->body
+                       ])
+                   ->json();
     }
+
+
 }
