@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class LogRequests
 {
+
     /**
      * Handle an incoming request.
      *
@@ -17,12 +18,16 @@ class LogRequests
      * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$parameters)
     {
+        if(collect($parameters)->contains("noreplay")) {
+            $request->attributes->add(["noreplay" => true]);
+        }
+
         return $next($request);
     }
 
-    public function terminate(Request $request, $response)
+    public function terminate(Request $request, JsonResponse $response, ...$parameters)
     {
         if ($response->isClientError() || $response->isServerError()) return;
         if ($response->isInvalid()) return;
@@ -34,7 +39,8 @@ class LogRequests
                                'body'    => $request->except("password", "password_confirmation"),
                                'method'  => $request->method(),
                                'user_id' => $request->user() ? $request->user()->id : 0,
-                               'ip'      => $request->ip()
+                               'ip'      => $request->ip(),
+                               'replayable' => !$request->attributes->has("noreplay")
                            ]);
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Middleware\LogRequests;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware([LogRequests::class, 'auth:sanctum'])
-     ->group(function () {
-         Route::apiResource("/user", \App\Http\Controllers\UserController::class);
-     });
+
+Route::middleware(['log:noreplay', 'auth:sanctum'])->group(function () {
+    Route::apiResource("/user", \App\Http\Controllers\UserController::class);
+});
+
+
+Route::middleware(['log', 'auth:sanctum'])->group(function () {
+
+});
+
+Route::post('/login', [\App\Http\Controllers\UserController::class, "login"])->middleware('log:noreplay');
+Route::post("/user", [\App\Http\Controllers\UserController::class, "store"])->middleware('log:noreplay');

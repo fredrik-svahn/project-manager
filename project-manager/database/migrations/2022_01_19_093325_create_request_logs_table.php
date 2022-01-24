@@ -23,6 +23,7 @@ class CreateRequestLogsTable extends Migration
             $table->string("ip");
             $table->boolean("done")->default(true);
             $table->bigInteger("user_id")->default(0);
+            $table->boolean("replayable")->default(true);
             $table->timestamps();
         });
     }
