@@ -16,5 +16,4 @@
         <br>
         <button type="submit">Submit</button>
     </form>
-
 @endsection

@@ -22,6 +22,10 @@ Route::middleware(['log:noreplay', 'auth:sanctum'])->group(function () {
     Route::apiResource("/user", \App\Http\Controllers\UserController::class);
 });
 
+Route::get("/whoami",
+    function (Request $request) {
+        return $request->user();
+    })->middleware("auth");
 
 Route::middleware(['log', 'auth:sanctum'])->group(function () {
 
@@ -29,3 +33,4 @@ Route::middleware(['log', 'auth:sanctum'])->group(function () {
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, "login"])->middleware('log:noreplay');
 Route::post("/user", [\App\Http\Controllers\UserController::class, "store"])->middleware('log:noreplay');
+
