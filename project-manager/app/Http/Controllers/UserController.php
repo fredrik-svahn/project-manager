@@ -39,7 +39,7 @@ class UserController extends Controller
                                'email'    => $request->email,
                                'password' => $request->password
                            ])) {
-            return false;
+            return ["message" => "Invalid email/password combination"];
         }
 
         $user = User::where("email", $request->email)

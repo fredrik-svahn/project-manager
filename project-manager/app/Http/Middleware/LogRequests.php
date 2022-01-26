@@ -27,12 +27,11 @@ class LogRequests
         return $next($request);
     }
 
-    public function terminate(Request $request, JsonResponse $response, ...$parameters)
+    public function terminate(Request $request, $response, ...$parameters)
     {
         if ($response->isClientError() || $response->isServerError()) return;
         if ($response->isInvalid()) return;
         if ($request->method() == "GET") return;
-        if ($request->query("_replay")) return;
 
         RequestLog::create([
                                'path'    => $request->path(),

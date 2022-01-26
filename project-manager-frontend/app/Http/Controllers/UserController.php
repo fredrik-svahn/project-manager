@@ -12,9 +12,23 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function login_post()
+    public function login_post(Request $request)
     {
+        $api      = new API();
+        $path     = "/api/login";
+        $data     = $request->all();
+
+        $response =
+            $api
+                ->url($path)
+                ->body($data)
+                ->post()
+                ->response();
+
         
+        dd($response);
+
+        return $this->redirectWithErrors("/", $response);
     }
 
     public function register()

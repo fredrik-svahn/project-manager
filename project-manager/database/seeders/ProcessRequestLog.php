@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\RequestLog;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Tests\CreatesApplication;
 
-class ProcessRequestLog extends Seeder
+class ProcessRequestLog
 {
+    use MakesHttpRequests;
     /**
      * Run the database seeds.
      *
@@ -24,9 +26,8 @@ class ProcessRequestLog extends Seeder
                   ->chunk(200,
                       function ($models) {
                           foreach ($models as $model) {
-                              app()->handle(Request::create("/" . $model->path . "?_replay",
-                                                            $model->method,
-                                                            $model->body));
+                              $this->withoutMiddleware("log");
+                              $this->json($model->method, "/" . $model->path, $model->body);
                               $model->done = true;
                               $model->save();
                           }
