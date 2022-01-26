@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,5 +27,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Auth::extend('api', function ($app, $name, array $config) {
+            // Return an instance of Illuminate\Contracts\Auth\Guard...
+
+            return new APIGuard(Auth::createUserProvider($config['provider']));
+        });
     }
 }

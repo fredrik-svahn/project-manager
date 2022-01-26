@@ -74,5 +74,13 @@ class API
                    ->json();
     }
 
+    public function user()
+    {
+        return $this
+            ->url("/api/whoami")
+            ->get()
+            ->response();
+    }
+
 
 }
