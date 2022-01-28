@@ -25,7 +25,6 @@ class AuthAPI
             ->response();
 
         dd($response);
-        dd($api);
 
         if (!$user) return redirect("/login");
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class API
 {
@@ -18,7 +19,8 @@ class API
     public function __construct()
     {
         $this->api_url = env("API_URL");
-        $this->token   = session('api_token');
+        $this->token   = session()->get('api_token');
+
     }
 
     public function post()
@@ -72,6 +74,12 @@ class API
                            'json' => $this->body
                        ])
                    ->json();
+    }
+
+    public function httpClient()
+    {
+        return Http::withToken($this->token)
+                   ->acceptJson();
     }
 
     public function user()

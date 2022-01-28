@@ -25,7 +25,7 @@ Route::middleware(['log:noreplay', 'auth:sanctum'])->group(function () {
 Route::get("/whoami",
     function (Request $request) {
         return $request->user();
-    })->middleware("auth");
+    })->middleware("auth:sanctum");
 
 Route::middleware(['log', 'auth:sanctum'])->group(function () {
 

@@ -51,6 +51,6 @@ class UserController extends Controller
              ->delete();
 
         $token = $user->createToken("login");
-        return ['token' => $token->plainTextToken];
+        return ['token' => explode('|', $token->plainTextToken)[1]];
     }
 }
