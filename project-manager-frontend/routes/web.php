@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome'); })->middleware("auth_api");
+Route::middleware('auth_api')->group(function() {
+    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
+});
 
 Route::get("/login", [\App\Http\Controllers\UserController::class, 'login']);
 Route::post( '/login', [\App\Http\Controllers\UserController::class, 'login_post']);
