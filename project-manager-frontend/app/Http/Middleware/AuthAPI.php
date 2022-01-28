@@ -24,9 +24,7 @@ class AuthAPI
             ->get()
             ->response();
 
-        dd($response);
-
-        if (!$user) return redirect("/login");
+        if(!isset($response['email'])) return redirect("/login");
 
         return $next($request);
     }

@@ -57,6 +57,12 @@ class UserController extends Controller
         return $this->redirectWithErrors("/", $response);
     }
 
+
+    public function logout() {
+        session()->forget('api_token');
+        return redirect("/");
+    }
+
     /**
      * @param string $redirectTo
      * @param $response
