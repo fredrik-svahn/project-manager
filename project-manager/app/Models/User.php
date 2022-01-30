@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function logs() {
         return $this->hasMany(RequestLog::class);
     }
+
+    public function address() {
+        return $this->hasOne(UserAddress::class);
+    }
 }
