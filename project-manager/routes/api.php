@@ -24,6 +24,9 @@ Route::get("/whoami",
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/user", \App\Http\Controllers\UserController::class);
+    Route::apiResource("/user/{user}/address", \App\Http\Controllers\UserAddressController::class)
+         ->only("index", "store", "destroy");
+
 });
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, "login"]);
