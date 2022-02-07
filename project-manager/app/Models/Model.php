@@ -4,10 +4,15 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Model extends \Illuminate\Database\Eloquent\Model
 {
+    use SoftDeletes;
+
+    protected $guarded = ['id', 'created_by'];
+
     public static function boot()
     {
         parent::boot();

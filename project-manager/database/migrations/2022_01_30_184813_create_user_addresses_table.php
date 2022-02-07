@@ -18,7 +18,8 @@ class CreateUserAddressesTable extends Migration
             $table->bigInteger('user_id');
             $table->string('zip_code');
             $table->string('address');
-            $table->dateTime('deleted_at');
+            $table->softDeletes();
+            $table->bigInteger('created_by');
             $table->timestamps();
         });
     }
