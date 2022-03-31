@@ -11286,3 +11286,24 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+    background-color: #26223b;
+    color: #FFF;
+    font-family: Arial, sans-serif;
+}
+
+.dark {
+    background-color: #26223b;
+}
+
+.light {
+    background-color: #423e59;
+}
+
+
+
+p {
+    font-size: 18px;
+}
+
+
