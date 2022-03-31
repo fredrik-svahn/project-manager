@@ -22,6 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $viewcount = \App\Models\ViewCount::all()->count();
+        return view('home', compact('viewcount'));
     }
 }

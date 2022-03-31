@@ -24,7 +24,7 @@
         <nav class="navbar fixed-top navbar-expand-md light">
             <div class="container">
                 <a class="navbar-brand" style="color: white" href="#om-mig">Om mig</a>
-                <a class="navbar-brand" style="color: white" href="#mina-projekt">Mina projekt</a>
+                <a class="navbar-brand" style="color: white" href="#den-har-sidan">Den här sidan</a>
                 <a class="navbar-brand" style="color: white" href="#mitt-cv">Mitt CV</a>
                 <a class="navbar-brand" style="color: white" href="#kontakta-mig">Kontakta mig</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

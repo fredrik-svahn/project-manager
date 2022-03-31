@@ -60,7 +60,6 @@
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-2">
                                     <div class="card border-0 light">
@@ -72,11 +71,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-2">
+                                    <div class="card border-0 light">
+                                        <div class="card-body">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                            <a href="https://www.mysql.com/" target="_blank">
+                                                <img style="width: 100%; height: 70px" src="{{asset("img/mysql.svg")}}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p>Den här sidan är byggd i PHP med Laravel som ramverk </p>
-                            <a href="https://laravel.com/">
-                                <img src="{{asset("img/Laravel.svg")}}" style="width: 100px" alt="">
-                            </a>
+
                         </div>
                         <div class="col-md-3">
                             <img width="100%" src="{{ asset("img/fredrik.jpg")  }}" alt="En bild på mig">
@@ -88,8 +95,41 @@
             <div class="card border-0">
                 <div class="card-body light">
                     <div class="row">
-                        <div class="col-md-3">
-                            <img width="100%" src="{{ asset("img/fredrik.jpg")  }}" alt="En bild på mig">
+
+                        <div class="col-md-12">
+                            <h1 id="den-har-sidan">Den här sidan</h1>
+                            <p>Den här sidan är byggd med: </p>
+
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card dark">
+                                        <div class="card-body ">
+                                            PHP som back-end språk
+                                            <img src="{{asset("img/php.svg")}}" style="height: 35px" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card dark">
+                                        <div class="card-body ">
+                                            Laravel som ramverk
+                                            <img src="{{asset("img/Laravel.svg")}}" style="height: 35px" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card dark">
+                                        <div class="card-body ">
+                                            MySQL som databas
+                                            <img src="{{asset("img/mysql.svg")}}" style="height: 35px" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            Sidan har besökts av: {{ $viewcount }}  {{ $viewcount == 1 ? "unik besökare" : "unika besökare" }}
                         </div>
                     </div>
                 </div>
