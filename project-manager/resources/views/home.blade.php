@@ -95,12 +95,9 @@
             <div class="card border-0">
                 <div class="card-body light">
                     <div class="row">
-
                         <div class="col-md-12">
                             <h1 id="den-har-sidan">Den här sidan</h1>
                             <p>Den här sidan är byggd med: </p>
-
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="card dark">
@@ -129,11 +126,49 @@
                                 </div>
                             </div>
                             <br>
-                            Sidan har besökts av: {{ $viewcount }}  {{ $viewcount == 1 ? "unik besökare" : "unika besökare" }}
+                            <p>
+                                Sidan har besökts av: {{ $viewcount }}  {{ $viewcount == 1 ? "unik besökare" : "unika besökare" }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="card border-0">
+                <div class="card-body dark">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Mitt CV </h1>
+                            <p>Här kan du ladda ner mitt CV</p>
+
+
+                            <a href="{{asset('img/CV.pdf')}}" download>
+                                <input type="button" class="btn btn-primary" value="Ladda ner CV">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0">
+                <div class="card-body light">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Kontakta mig</h1>
+                            <p>Vill du anställa mig? Du kan nå mig här:</p>
+
+                            <a style="font-size: 20px; color: teal" href="tel:0720293221">
+                                Telefon: 0720293221
+                            </a>
+                            <br>
+                            <a style="font-size: 20px; color: teal" href="mailto:fredriksvahn97@gmail.com">
+                                Email: fredriksvahn97@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
