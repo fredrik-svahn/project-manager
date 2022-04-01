@@ -1,2 +1,2 @@
-web: php artisan serve --port=80
+web: cd public
 
