@@ -86,7 +86,7 @@
 
                         </div>
                         <div class="col-md-3">
-                            <img width="100%" src="{{ asset("img/fredrik.jpg")  }}" alt="En bild på mig">
+                            <img width="100%" src="{{ asset("img/fredrik-small.jpg")  }}" alt="En bild på mig">
                         </div>
                     </div>
                 </div>
