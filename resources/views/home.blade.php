@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="">
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row">
         <div class="">
             <br id="om-mig">
             <br>
@@ -155,7 +155,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1>Kontakta mig</h1>
-                            <p>Vill du anställa mig? Du kan nå mig här:</p>
+                            <p>Vill du kontakta mig? Du kan nå mig här:</p>
 
                             <a style="font-size: 20px; color: teal" href="tel:0720293221">
                                 Telefon: 0720293221
